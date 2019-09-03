@@ -3,10 +3,12 @@ const sinespApi = require('sinesp-api');
 
 const server = express();
 
-server.get('/', async (req, res) => {
-	const result = await sinespApi.search(req.query.plate);
+server.use(express.json());
+
+server.post('/search-car-plate', async (req, res) => {
+	const result = await sinespApi.search(req.body.id);
 
 	return res.send(result);
 });
 
-server.listen(3333);
+server.listen(3232);
